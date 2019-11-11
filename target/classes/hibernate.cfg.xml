@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+      <!-- 1.必填连接数据库参数 -->
+      <property name="hibernate.connection.driver_class">
+          com.mysql.jdbc.Driver
+      </property>
+      <property name="hibernate.connection.url">
+          jdbc:mysql://localhost:3306/sale?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false
+      </property>
+      <property name="hibernate.connection.username">root</property>
+      <property name="hibernate.connection.password">123456</property>
+
+      <!-- Hibernate整合C3P0连接池 -->
+      <property name="hibernate.connection.provider_class">
+          org.hibernate.c3p0.internal.C3P0ConnectionProvider
+      </property>
+      <!-- C3P0参数 -->
+      <property name="hibernate.c3p0.min_size">10</property>
+      <property name="hibernate.c3p0.max_size">50</property>
+      <property name="hibernate.c3p0.timeout">5000</property>
+
+      <!-- 方言 -->
+      <property name="hibernate.dialect">
+          org.hibernate.dialect.MySQL5Dialect
+      </property>
+
+      <!-- 2.扩展参数 -->
+      <!-- 显示SQL语句 -->
+      <property name="hibernate.show_sql">true</property>
+      <!-- 格式化SQL语句 -->
+      <property name="hibernate.format_sql">true</property>
+      <!-- 自动维护表  -->
+      <property name="hibernate.hbm2ddl.auto">update</property>
+
+
+
+      <!--<property name="jdbc:mysql://localhost:3306/sale"/>-->
+      <!--<property name="com.mysql.jdbc.Driver"/>-->
+      <!--<property name="root"/>-->
+      <!--<property name="123456"/>-->
+     <!--<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>-->
+      <!--<property name="show_sql">true</property>-->
+     <!--<property name="format_sql">true</property>-->
+
+
+        <!--<property name="hbm2ddl.auto">update</property>-->
+        <!--<property name="connection.url">jdbc:mysql://localhost:3306/sale</property>-->
+        <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
+
+
+      <mapping resource="com/ssh/entity/OrderEntity.hbm.xml"/>
+      <mapping class="com.ssh.entity.OrderEntity"/>
+      <mapping resource="com/ssh/entity/ProductEntity.hbm.xml"/>
+      <mapping class="com.ssh.entity.ProductEntity"/>
+      <mapping class="com.ssh.entity.UserEntity"/>
+      <mapping resource="com/ssh/entity/UserEntity.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

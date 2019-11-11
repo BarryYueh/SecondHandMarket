@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 引入外部属性文件=============================== -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!--在扫描时排除Controller-->
+    <context:component-scan base-package="com.ssh">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- 配置C3P0连接池=============================== -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!-- 配置SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <!-- 注入连接池 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 配置Hibernate的相关属性 -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- HibernateTemplate对象 -->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="userDAO" class="com.ssh.dao.impl.UserDAO">
+        <property name="ht" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="userService" class="com.ssh.service.impl.UserService">
+        <property name="userDAO" ref="userDAO"></property>
+    </bean>
+    <bean id="adminService" class="com.ssh.service.impl.AdminService">
+        <property name="userDAO" ref="userDAO"></property>
+    </bean>
+
+
+    <bean id="productDAO" class="com.ssh.dao.impl.ProductDAO">
+        <property name="ht" ref="hibernateTemplate"/>
+    </bean>
+    <bean id="productService" class="com.ssh.service.impl.ProductService">
+        <property name="productDAO" ref="productDAO"></property>
+    </bean>
+
+    <!-- 事物管理器配置  -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <tx:advice id="txAdivce" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="update*" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="delete*" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="find*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="*" isolation="DEFAULT" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- 创建事务切面 -->
+    <aop:config>
+        <aop:pointcut expression="execution(* com.ssh.service.impl.*Service.*(..))" id="myPt"/>
+        <aop:advisor advice-ref="txAdivce" pointcut-ref="myPt"/>
+    </aop:config>
+
+</beans>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+
+    <mvc:annotation-driven/>
+    <!--扫描controller层在spring中不在扫描-->
+    <context:component-scan base-package="com.controller" />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--&lt;!&ndash;配置拦截器&ndash;&gt;-->
+    <!--<mvc:interceptors>-->
+    <!--<mvc:interceptor>-->
+    <!--&lt;!&ndash;配置拦截所有请求&ndash;&gt;-->
+    <!--<mvc:mapping path="/**"/>-->
+    <!--&lt;!&ndash;配置拦截器的位置&ndash;&gt;-->
+    <!--<bean class="这里写拦截器的位置"></bean>-->
+    <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+    <mvc:default-servlet-handler/>
+
+
+
+    <!--<mvc:resources mapping="/js/**" location="/js/"/>-->
+    <!--<mvc:resources mapping="/jsp/**" location="/jsp/"/>-->
+    <!--<mvc:resources mapping="/css/**" location="/css/"/>-->
+
+</beans>

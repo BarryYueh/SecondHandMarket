@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map>
+          <unit-entry name="a.xml" value="9ca65716-e618-4c4f-8fb7-e73b30ef104b" />
+          <unit-entry name="hibernate.cfg.xml" value="9ca65716-e618-4c4f-8fb7-e73b30ef104b" />
+          <unit-entry name="sessionFactory" value="41fd0748-36c2-40cc-84ad-87ebfa10fcb2" />
+        </datasource-map>
+        <naming-strategy-map />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
+      </configuration>
+    </facet>
+  </component>
+</module>

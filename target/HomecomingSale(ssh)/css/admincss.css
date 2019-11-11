@@ -1,0 +1,114 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2018-12-17, 16:58:56
+    Author     : Barry
+*/
+
+.main{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+.header{
+    position:absolute;
+    left:200px;
+    top:0;
+    right:0;
+    background-color:  #888;
+    height: 80px;
+}
+.leftMenu{
+    position: fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    background-color:  #1abc9c;
+    width:200px;
+    height:100%;
+    overflow: hidden;
+}
+.mainContent{
+    position: absolute;
+    left:200px;
+    top:80px;
+    bottom:0;
+    background-color:  #FFFFFF;
+    right:0;
+}
+.img{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+ul
+        {   
+            list-style-type:none;
+            margin:0;
+            padding:0;
+            overflow:hidden;
+        }
+       
+        li.nav_user
+        {
+            float:center;
+        }
+            a:link,a:visited
+        {
+            display:block;
+            width:200px;
+            font-weight:bold;
+            color:#FFFFFF;
+            background-color: #1abc9c;
+            text-align:center;
+            padding:4px;
+            text-decoration:none;
+            text-transform:uppercase;
+        }
+            a:hover,a:active {background-color: #888}
+        li.handle{
+            float:center;
+        }
+        
+        
+        
+        
+        
+
+       
+table.hovertable {
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+}
+table.hovertable th {
+    width: 900px;
+    background-color:#c3dde0;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+table.hovertable tr {
+    background-color:#d4e3e5;
+}
+table.hovertable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
