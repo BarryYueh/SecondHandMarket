@@ -23,7 +23,7 @@
     <taglib.Version>1.1.2</taglib.Version>
     <servlet.Version>3.0-alpha-1</servlet.Version>
     <json.Version>1.9.13</json.Version>
-    <jackson.Version>2.5.0</jackson.Version>
+    <jackson.Version>2.12.7.1</jackson.Version>
     <mysql.Version>5.1.38</mysql.Version>
     <c3p0.Version>0.9.1.2</c3p0.Version>
     <log4j.Version>1.2.17</log4j.Version>
