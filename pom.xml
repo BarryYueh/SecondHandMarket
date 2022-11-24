@@ -18,7 +18,7 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <spring.Version>4.3.1.RELEASE</spring.Version>
-    <hibernate.Version>4.3.5.Final</hibernate.Version>
+    <hibernate.Version>5.3.20.Final</hibernate.Version>
     <jstl.Version>1.2</jstl.Version>
     <taglib.Version>1.1.2</taglib.Version>
     <servlet.Version>3.0-alpha-1</servlet.Version>
